@@ -11,6 +11,11 @@
 		84D7D36429B76E23006D95AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D36329B76E23006D95AF /* ContentView.swift */; };
 		84D7D36629B76E25006D95AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D7D36529B76E25006D95AF /* Assets.xcassets */; };
 		84D7D36929B76E25006D95AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D7D36829B76E25006D95AF /* Preview Assets.xcassets */; };
+		84D7D37029B77B77006D95AF /* ProspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D36F29B77B77006D95AF /* ProspectsView.swift */; };
+		84D7D37229B77BAE006D95AF /* MeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D37129B77BAE006D95AF /* MeView.swift */; };
+		84D7D37429B77EA2006D95AF /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D37329B77EA2006D95AF /* Prospect.swift */; };
+		84D7D37729B789EE006D95AF /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 84D7D37629B789EE006D95AF /* CodeScanner */; };
+		84D7D37929B79CA4006D95AF /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D37829B79CA4006D95AF /* ImageSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,10 @@
 		84D7D36329B76E23006D95AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		84D7D36529B76E25006D95AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84D7D36829B76E25006D95AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		84D7D36F29B77B77006D95AF /* ProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProspectsView.swift; sourceTree = "<group>"; };
+		84D7D37129B77BAE006D95AF /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
+		84D7D37329B77EA2006D95AF /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
+		84D7D37829B79CA4006D95AF /* ImageSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D7D37729B789EE006D95AF /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +63,10 @@
 			children = (
 				84D7D36129B76E23006D95AF /* Projec16_HotProspectsApp.swift */,
 				84D7D36329B76E23006D95AF /* ContentView.swift */,
+				84D7D37329B77EA2006D95AF /* Prospect.swift */,
+				84D7D36F29B77B77006D95AF /* ProspectsView.swift */,
+				84D7D37129B77BAE006D95AF /* MeView.swift */,
+				84D7D37829B79CA4006D95AF /* ImageSaver.swift */,
 				84D7D36529B76E25006D95AF /* Assets.xcassets */,
 				84D7D36729B76E25006D95AF /* Preview Content */,
 			);
@@ -83,6 +97,9 @@
 			dependencies = (
 			);
 			name = Projec16_HotProspects;
+			packageProductDependencies = (
+				84D7D37629B789EE006D95AF /* CodeScanner */,
+			);
 			productName = Projec16_HotProspects;
 			productReference = 84D7D35E29B76E23006D95AF /* Projec16_HotProspects.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,9 @@
 				Base,
 			);
 			mainGroup = 84D7D35529B76E23006D95AF;
+			packageReferences = (
+				84D7D37529B789EE006D95AF /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = 84D7D35F29B76E23006D95AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D7D37229B77BAE006D95AF /* MeView.swift in Sources */,
+				84D7D37929B79CA4006D95AF /* ImageSaver.swift in Sources */,
+				84D7D37429B77EA2006D95AF /* Prospect.swift in Sources */,
 				84D7D36429B76E23006D95AF /* ContentView.swift in Sources */,
 				84D7D36229B76E23006D95AF /* Projec16_HotProspectsApp.swift in Sources */,
+				84D7D37029B77B77006D95AF /* ProspectsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +294,8 @@
 				DEVELOPMENT_TEAM = R7U57FJ9PH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your QR codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +325,8 @@
 				DEVELOPMENT_TEAM = R7U57FJ9PH;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your QR codes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +367,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84D7D37529B789EE006D95AF /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84D7D37629B789EE006D95AF /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84D7D37529B789EE006D95AF /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 84D7D35629B76E23006D95AF /* Project object */;
 }
