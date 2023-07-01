@@ -16,6 +16,7 @@
 		84D7D37429B77EA2006D95AF /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D37329B77EA2006D95AF /* Prospect.swift */; };
 		84D7D37729B789EE006D95AF /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 84D7D37629B789EE006D95AF /* CodeScanner */; };
 		84D7D37929B79CA4006D95AF /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D7D37829B79CA4006D95AF /* ImageSaver.swift */; };
+		84E3CE312A4F5349003C8EAA /* FileManager-save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3CE302A4F5349003C8EAA /* FileManager-save.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		84D7D37129B77BAE006D95AF /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		84D7D37329B77EA2006D95AF /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 		84D7D37829B79CA4006D95AF /* ImageSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		84E3CE302A4F5349003C8EAA /* FileManager-save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-save.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				84D7D36F29B77B77006D95AF /* ProspectsView.swift */,
 				84D7D37129B77BAE006D95AF /* MeView.swift */,
 				84D7D37829B79CA4006D95AF /* ImageSaver.swift */,
+				84E3CE302A4F5349003C8EAA /* FileManager-save.swift */,
 				84D7D36529B76E25006D95AF /* Assets.xcassets */,
 				84D7D36729B76E25006D95AF /* Preview Content */,
 			);
@@ -161,6 +164,7 @@
 				84D7D37929B79CA4006D95AF /* ImageSaver.swift in Sources */,
 				84D7D37429B77EA2006D95AF /* Prospect.swift in Sources */,
 				84D7D36429B76E23006D95AF /* ContentView.swift in Sources */,
+				84E3CE312A4F5349003C8EAA /* FileManager-save.swift in Sources */,
 				84D7D36229B76E23006D95AF /* Projec16_HotProspectsApp.swift in Sources */,
 				84D7D37029B77B77006D95AF /* ProspectsView.swift in Sources */,
 			);

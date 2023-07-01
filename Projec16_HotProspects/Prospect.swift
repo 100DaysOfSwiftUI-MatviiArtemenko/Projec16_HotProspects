@@ -11,7 +11,7 @@ class Prospect: Identifiable, Codable {
     var id = UUID()
     var name = "Anonymus"
     var emailAddress = ""
-    fileprivate(set) var isContacted = false
+    var isContacted = false
 }
 
 @MainActor class Prospects: ObservableObject {
@@ -19,29 +19,24 @@ class Prospect: Identifiable, Codable {
     let saveKey = "SavedData"
 
     init() {
-        if let data = UserDefaults.standard.data(forKey: saveKey) {
-            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
-                people = decoded
-            }
-        }
-        // no saved data!
-        people = []
-    }
-
-    private func save() {
-        if let encoded = try? JSONEncoder().encode(people) {
-            UserDefaults.standard.set(encoded, forKey: saveKey)
-        }
+        people = FileManager.default.getData()
+            
     }
 
     func add(_ prospect: Prospect) {
-        people.append(prospect)
-        save()
+        FileManager.default.writeData(text: people)
+        people.insert(prospect, at: 0)
+    }
+    
+    func delete(at index: IndexSet) {
+        people.remove(atOffsets: index)
+        FileManager.default.writeData(text: people)
+
     }
 
     func toggle(_ prospect: Prospect) {
         objectWillChange.send()
+        FileManager.default.writeData(text: people)
         prospect.isContacted.toggle()
-        save()
     }
 }

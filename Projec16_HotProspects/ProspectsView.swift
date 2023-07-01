@@ -15,33 +15,47 @@ struct ProspectsView: View {
         case contacted
         case uncontacted
     }
+    enum SortType: String, CaseIterable {
+        case mostRecent
+        case byName
+    }
     
     @EnvironmentObject var prospects: Prospects
     
     @State private var isShowingScanner = false
     let filter: FilterType
+    @State var sort: SortType = .mostRecent
     var body: some View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
-                            .font(.caption)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                        Spacer()
+                        Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark" : "person.crop.circle.badge.xmark")
+                            .foregroundColor(prospect.isContacted ? .green : .secondary.opacity(0.4))
                     }
                     .swipeActions {
                         if prospect.isContacted {
                             Button {
-                                prospects.toggle(prospect)
+                                withAnimation {
+                                    prospects.toggle(prospect)
+                                }
                             } label: {
                                 Label("Mark Uncontacted", systemImage: "person.crop.circle.badge.xmark")
                             }
                             .tint(.blue)
                         } else {
                             Button {
-                                prospects.toggle(prospect)
+                                withAnimation {
+                                    prospects.toggle(prospect)
+                                }
                             } label: {
                                 Label("Mark Contacted", systemImage: "person.crop.circle.fill.badge.checkmark")
                             }
@@ -55,19 +69,46 @@ struct ProspectsView: View {
                             .tint(.yellow)
                         }
                     }
+                    
                 }
+                
             }
             .navigationTitle(title)
             .toolbar {
-                Button {
-                    isShowingScanner = true
-                } label: {
-                    Label("Scan", systemImage: "qrcode.viewfinder")
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        withAnimation {
+                            if sort == .byName {
+                                sort = .mostRecent
+                            } else {
+                                sort = .byName
+                            }
+                        }
+                        
+                    } label: {
+                        Label {
+                            Text(sort == .byName ? "by name" : "recent")
+                        } icon: {
+                            Image(systemName: sort == .byName ? "a.circle" : "chevron.up.circle")
+                        }
+
+                    }
                 }
+                ToolbarItem {
+                    Button {
+                        isShowingScanner = true
+                    } label: {
+                        Label("Scan", systemImage: "qrcode.viewfinder")
+                    }
+                }
+                
             }
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Matvii Artemenko\nartemenko.box@gmail.com", completion: handleScan)
             }
+        }
+        .toolbar {
+            
         }
     }
     
@@ -83,15 +124,29 @@ struct ProspectsView: View {
     }
     
     var filteredProspects: [Prospect] {
-        switch filter {
-        case .none:
-            return prospects.people
-            
-        case .contacted:
-            return prospects.people.filter { $0.isContacted }
-            
-        case .uncontacted:
-            return prospects.people.filter { !$0.isContacted }
+        switch sort {
+        case .mostRecent:
+            switch filter {
+            case .none:
+                return prospects.people
+                
+            case .contacted:
+                return prospects.people.filter { $0.isContacted }
+                
+            case .uncontacted:
+                return prospects.people.filter { !$0.isContacted }
+            }
+        case .byName:
+            switch filter {
+            case .none:
+                return prospects.people.sorted { $0.name < $1.name }
+                
+            case .contacted:
+                return prospects.people.filter { $0.isContacted }.sorted { $0.name < $1.name }
+                
+            case .uncontacted:
+                return prospects.people.filter { !$0.isContacted }.sorted { $0.name < $1.name }
+            }
         }
     }
     
@@ -127,7 +182,7 @@ struct ProspectsView: View {
             var dateComponents = DateComponents()
             dateComponents.hour = 9
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 7, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
             
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
             center.add(request)
@@ -151,7 +206,7 @@ struct ProspectsView: View {
 
 struct ProspectsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProspectsView(filter: .none)
+        ProspectsView(filter: .none, sort: .mostRecent)
             .environmentObject(Prospects())
     }
 }
